@@ -26,7 +26,7 @@ select trunc(34.567,-1) from dual;
 select trunc(35.567,-1) from dual;
 select round(343.567,-2) from dual;
 select round(353.567,-2) from dual;
-  select trunc(343.567,-2) from dual;
+ select trunc(343.567,-2) from dual;
 select trunc(353.567,-2) from dual;
 select power(3,4) from dual;
 select sqrt(81) from dual;
@@ -46,3 +46,22 @@ select round(to_date('23-NOV-21','DD-MON-RR'),'MONTH') from dual;
 select round(to_date('23-NOV-21','DD-MON-RR'),'YEAR') from dual;
 select trunc(to_date('23-NOV-21','DD-MON-RR'),'YEAR') from dual;
 select trunc(to_date('23-NOV-21','DD-MON-RR'),'MONTH') from dual;
+Conversion functions
+-------------------------
+SELECT last_name,hire_date,
+TO_CHAR(hire_date, 'fmDD Month YYYY')  AS HIREDATE from employees;
+SELECT last_name,hire_date,
+TO_CHAR(hire_date, 'fmDy Month YEAR')  AS HIREDATE from employees;
+SELECT last_name,hire_date,
+TO_CHAR(hire_date, 'fmDAY Mon YEAR')  AS HIREDATE from employees;
+SELECT last_name,hire_date,
+TO_CHAR(hire_date, 'fmddspth Mon YYYY')  AS HIREDATE from employees;
+SELECT last_name,hire_date,
+TO_CHAR(hire_date, 'fmDDspth Mon YYYY')  AS HIREDATE from employees;
+SELECT  salary,TO_CHAR(salary, '$99,999.00') SALARY from employees;
+select first_name,job_id,
+case job_id
+when 'AD_PRES' then 'President'
+when 'AD_MGR' then 'Accounting Manager'
+when 'IT_PROG' then 'Programmer'
+else 'N/A' end "Job" from employees
