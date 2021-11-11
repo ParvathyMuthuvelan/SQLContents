@@ -1,0 +1,48 @@
+Character functions
+-----------------------
+select upper('hello') from dual;
+ select upper('hello') from dual;
+ select upper(first_name) from employees;
+ select upper(first_name),Initcap(first_name) from employees;
+ select length(first_name) from employees;
+select concat(first_name,last_name) as "Name" from employees;
+select instr(first_name,'a') from employees;
+select first_name,instr(first_name,'a') from employees;
+select replace('abcd','a','A')from dual;
+select substr('hello world',2,3) from dual;
+select substr('hello world',4) from dual;
+ select lpad(salary,10,'*') from employees;
+select rpad(salary,10,'*') from employees;
+select trim('h' from 'helloworld') from dual;
+Number Functions
+---------------------
+ select mod(6,2) from dual;
+ select round(34.567,2) from dual;
+select trunc(34.567,2) from dual;
+select round(34.564,2) from dual;
+select round(34.567,-1) from dual;
+select round(35.567,-1) from dual;
+select trunc(34.567,-1) from dual;
+select trunc(35.567,-1) from dual;
+select round(343.567,-2) from dual;
+select round(353.567,-2) from dual;
+  select trunc(343.567,-2) from dual;
+select trunc(353.567,-2) from dual;
+select power(3,4) from dual;
+select sqrt(81) from dual;
+Date Functions
+------------------
+select first_name,hire_date,(sysdate-hire_date) from employees;
+select first_name,hire_date,(sysdate-hire_date)/365 "Experience" from employees;
+select first_name,hire_date,round((sysdate-hire_date)/365,2) "Experience" from employees;
+select MONTHS_BETWEEN('11-NOV-21','11-JAN-21') from dual;
+ select add_months(sysdate,3) from dual;
+select next_day(sysdate,'FRIDAY') from dual;
+select last_day('01-FEB-21') from dual;
+select last_day('01-FEB-20') from dual;
+ select round(sysdate,'MONTH') from dual;
+ select trunc(sysdate,'MONTH') from dual;
+select round(to_date('23-NOV-21','DD-MON-RR'),'MONTH') from dual;
+select round(to_date('23-NOV-21','DD-MON-RR'),'YEAR') from dual;
+select trunc(to_date('23-NOV-21','DD-MON-RR'),'YEAR') from dual;
+select trunc(to_date('23-NOV-21','DD-MON-RR'),'MONTH') from dual;
