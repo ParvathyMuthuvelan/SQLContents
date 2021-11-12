@@ -65,3 +65,11 @@ when 'AD_PRES' then 'President'
 when 'AD_MGR' then 'Accounting Manager'
 when 'IT_PROG' then 'Programmer'
 else 'N/A' end "Job" from employees
+
+General functions
+---------------------
+select nvl(commission_pct,0)from employees;
+select avg(nvl(commission_pct,0)) from employees;
+select nvl2(email,email,'N/A') from employees;
+select first_name,coalesce(phone_number,email,'N/A') "conctact info" from employees;
+select first_name,coalesce(email,phone_number,'N/A') "conctact info" from employees;
