@@ -1,0 +1,15 @@
+--inner join
+select emp.employee_id,emp.first_name,dep.deptno,dep.deptname from department dep join employees emp on dep.deptno=emp.department_id;
+--table name as prefix
+select employees.employee_id,employees.first_name,department.deptno,department.deptname from department dep join employees emp on dep.deptno=emp.department_id
+-- using alias
+select emp.employee_id,emp.first_name,dep.deptno,dep.deptname from department dep join employees emp on dep.deptno=emp.department_id
+
+--left outer join
+select emp.employee_id,emp.first_name,dep.deptno,dep.deptname from department dep left outer join employees emp on dep.deptno=emp.department_id
+
+--right outer join
+select emp.employee_id,emp.first_name,dep.deptno,dep.deptname from department dep right outer join employees emp on dep.deptno=emp.department_id
+
+--full outer join
+select emp.employee_id,emp.first_name,dep.deptno,dep.deptname from department dep full outer join employees emp on dep.deptno=emp.department_id
