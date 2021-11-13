@@ -1,0 +1,15 @@
+CREATE SEQUENCE dept_deptid_seq
+  2                  INCREMENT BY 10
+  3                  START WITH 120
+  4                  MAXVALUE 9999
+  5                  NOCACHE
+  6                  NOCYCLE
+
+select dept_deptid_seq.nextval from dual;
+select dept_deptid_seq.currval from dual;
+insert into department values(dept_deptid_seq.nextval,'Sales');
+create view emp_view as select employee_id,first_name,salary,department_id from employees where department_id=10
+ select * from emp_view;
+ update emp_view set salary=salary+5000 where employee_id=103;
+select * from emp_view;
+select employee_id,salary from employees;
