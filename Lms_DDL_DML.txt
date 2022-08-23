@@ -39,20 +39,20 @@ Create table LMS_SUPPLIERS_DETAILS
 );
 Create table LMS_FINE_DETAILS
 (
-	FINE_RANGE Varchar(3),
-	FINE_AMOUNT int NOT NULL,
+	FINE_RANGE Varchar2(3),
+	FINE_AMOUNT number NOT NULL,
 	Constraint lms_fine_range_pk PRIMARY KEY(FINE_RANGE)
 );
 Create table LMS_BOOK_ISSUE
 (
-	BOOK_ISSUE_NO int,
-	MEMBER_ID Varchar(10) NOT NULL,
-	BOOK_CODE Varchar(10) NOT NULL,
+	BOOK_ISSUE_NO number,
+	MEMBER_ID Varchar2(10) NOT NULL,
+	BOOK_CODE Varchar2(10) NOT NULL,
 	DATE_ISSUE Date NOT NULL,
 	DATE_RETURN Date NOT NULL,
         DATE_RETURNED Date NULL,
-	BOOK_ISSUE_STATUS Varchar(20) NOT NULL,
-	FINE_RANGE varchar(3),
+	BOOK_ISSUE_STATUS Varchar2(20) NOT NULL,
+	FINE_RANGE varchar2(3),
 	Constraint lms_issue_no_pk PRIMARY KEY(BOOK_ISSUE_NO),
 	Constraint lms_mem_book_memid_fk FOREIGN KEY(MEMBER_ID) References LMS_MEMBERS(MEMBER_ID),
 	constraint lms_issue_bdetails_bcode_fk FOREIGN KEY(BOOK_CODE) References LMS_BOOK_DETAILS(BOOK_CODE),
@@ -60,22 +60,22 @@ Create table LMS_BOOK_ISSUE
 );
 
 Insert into LMS_MEMBERS
-Values('LM001', 'AMIT', 'CHENNAI', ('20-FEB-2012'), ('2013-11-02'),'Temporary');
+Values('LM001', 'AMIT', 'CHENNAI', ('20-FEB-12'), ('02-NOV-13'),'Temporary');
 
 Insert into LMS_MEMBERS
-Values('LM002', 'ABDHUL', 'DELHI', ('2012-04-10'),('2013-04-09'),'Temporary');
+Values('LM002', 'ABDHUL', 'DELHI', ('10-APR-12'),('09-APR-13'),'Temporary');
 
 Insert into LMS_MEMBERS
-Values('LM003', 'GAYAN', 'CHENNAI', ('2013-05-12'),('2013-05-14'), 'Permanent');
+Values('LM003', 'GAYAN', 'CHENNAI', ('12-MAY-2013'),('14-MAY-2013'), 'Permanent');
 
 Insert into LMS_MEMBERS
-Values('LM004', 'RADHA', 'CHENNAI', ('2012-04-22'), ('2013-04-21'), 'Temporary');
+Values('LM004', 'RADHA', 'CHENNAI', ('20-APR-22'), ('02-APR-22'), 'Temporary');
 
 Insert into LMS_MEMBERS
-Values('LM005', 'GURU', 'BANGALORE', ('2012-03-30'), ('2013-03-29'),'Temporary');
+Values('LM005', 'GURU', 'BANGALORE', ('22-MAR-13'), ('13-MAR-13'),'Temporary');
 
 Insert into LMS_MEMBERS
-Values('LM006', 'MOHAN', 'CHENNAI', ('2012-04-12'), ('2013-04-12'),'Temporary');
+Values('LM006', 'MOHAN', 'CHENNAI', ('12-APR-12'), ('15-APR-13'),'Temporary');
 
 
 select * from LMS_MEMBERS;
