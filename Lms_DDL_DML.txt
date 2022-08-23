@@ -2,27 +2,27 @@ create database lms;
 use lms;
 Create table LMS_MEMBERS
 (
-	MEMBER_ID Varchar(10),
-	MEMBER_NAME Varchar(30) NOT NULL,
-	CITY VARCHAR(20),
+	MEMBER_ID Varchar2(10),
+	MEMBER_NAME Varchar2(30) NOT NULL,
+	CITY VARCHAR2(20),
 	DATE_REGISTER Date NOT NULL,
 	DATE_EXPIRE Date ,
-	MEMBERSHIP_STATUS Varchar(15)NOT NULL,
+	MEMBERSHIP_STATUS Varcha2r(15)NOT NULL,
 	constraint lms_mem_id_pk PRIMARY KEY(MEMBER_ID)
 );
 Create table LMS_BOOK_DETAILS
 (
-	BOOK_CODE Varchar(10),	
-	BOOK_TITLE Varchar(50) NOT NULL,
-	CATEGORY Varchar(15) NOT NULL,
-	AUTHOR Varchar(30) NOT NULL,
-	PUBLICATION Varchar(30),
+	BOOK_CODE Varchar2(10),	
+	BOOK_TITLE Varchar2(50) NOT NULL,
+	CATEGORY Varchar2(15) NOT NULL,
+	AUTHOR Varchar2(30) NOT NULL,
+	PUBLICATION Varchar2(30),
 	PUBLISH_DATE Date,
-	BOOK_EDITION int(2),
+	BOOK_EDITION number(2),
 	PRICE int(8) NOT NULL,	
-	RACK_NUM Varchar(3),
+	RACK_NUM Varchar2(3),
 	DATE_ARRIVAL Date NOT NULL, 		
-	SUPPLIER_ID Varchar(3) NOT NULL,
+	SUPPLIER_ID Varchar2(3) NOT NULL,
 	Constraint lms_book_code_pk PRIMARY KEY(BOOK_CODE), 
         Constraint lms_book_sup_id_fk FOREIGN KEY(SUPPLIER_ID) References LMS_SUPPLIERS_DETAILS(SUPPLIER_ID)
 );
@@ -30,11 +30,11 @@ Create table LMS_BOOK_DETAILS
 
 Create table LMS_SUPPLIERS_DETAILS
 (
-	SUPPLIER_ID Varchar(3),
-	SUPPLIER_NAME Varchar(30) NOT NULL,
-	ADDRESS	Varchar(50),
-	CONTACT int(15) NOT NULL,
-	EMAIL Varchar(15) NOT NULL,
+	SUPPLIER_ID Varchar2(3),
+	SUPPLIER_NAME Varchar2(30) NOT NULL,
+	ADDRESS	Varchar2(50),
+	CONTACT number(15) NOT NULL,
+	EMAIL Varchar2(15) NOT NULL,
 	Constraint lms_sup_id_pk PRIMARY KEY(SUPPLIER_ID)
 );
 Create table LMS_FINE_DETAILS
