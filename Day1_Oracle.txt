@@ -1,0 +1,151 @@
+create table employee
+(empid int,empname varchar(30),job varchar(30),
+salary double);
+desc employee;
+select * from employee;
+
+
+-- insert into employ values(1003,'bbb',40000,'IT'); error
+
+ insert into employ values(1003,'Kavi',55000,'IT',null);
+
+ insert into employ(employee_id,employee_name,dept,salary) values(1004,'minu','IT',78000);
+
+insert into employee (empname,empid,job) 
+values("ccc",1002,'HR');
+
+ insert into employ values(&empid,'&empname',&salary,'&designation','&hire_date','&departmentname');
+
+select * from employ;
+
+update employee set salary=salary+5000;
+
+update employee set salary=40000 
+where salary is null;
+update employee set salary=salary+5000 
+where job='se';
+update employee set empid=1003,job='PM'
+where empname='eee';
+delete from employee where empid=1005;
+
+-- change table structure
+
+alter table employee add column hiredate date;
+alter table employee add column testcol int;
+alter table employee modify testcol varchar(30);
+alter table employee drop column testcol;
+alter table employee rename column hire_date to join_date;
+rename employee to employ;
+desc employee-error;
+desc employ;
+
+select sysdate() ;
+update employee set hiredate='2013-01-01' 
+where empid=1001;
+desc emp;
+alter table test.emp rename to ems.employee;
+select * from employee;
+select empid,salary from employee;
+select empid,salary from employee 
+where salary>45000;
+select empid,salary from employee 
+where salary<45000;
+-- and ,or,not
+select empid,salary from employee 
+where salary >=40000 and salary<=60000;
+
+select empid,salary,job from employee 
+where salary >=40000 or job='sse';
+create table employee_copy
+(empid int,empname varchar(30),job varchar(30),
+salary double,hiredate date);
+insert into employee_copy
+select * from employee;
+
+select * from employee_copy;
+
+-- Transaction
+set sql_safe_updates=0;
+start transaction;
+insert into employee values
+(1008,"minu",'TL',55000,'2009-01-05');
+update employee set hiredate='2015-03-04'
+where empid=1002;
+savepoint s1;
+delete from employee where empid=1003;
+savepoint s2;
+rollback to s1;
+commit;
+create table test(id int primary key,
+uname varchar(20));
+drop table test;
+
+/*create table test(id1 int primary key,
+id2 int primary key,
+uname varchar(20)); error*/
+
+create table test(id1 int,
+id2 int,
+uname varchar(20),
+primary key(id1,id2));
+
+insert into test(id1,uname) 
+values (1,'a');
+desc test;
+alter table employee add primary key(empid);
+insert into employee (empname,job) 
+values("ccc",'HR');
+-- primary key
+-- composite key - table level constraint
+-- check constraint
+create table course(courseid int,
+coursename varchar(30),
+start_date date check(start_date > sysdate()),
+end_date date);
+
+create table course(courseid int,
+coursename varchar(30),
+start_date date, 
+end_date date,
+check(start_date < end_date));
+
+
+create table employees(
+employee_id int ,
+first_name varchar(20)not null,
+last_name varchar(25) not null,
+email varchar(25) unique,
+phone_number varchar(20) ,
+hire_date date default sysdate,
+job_id varchar(10) not null,
+salary double check (salary>0),
+commission_pct double,
+manager_id int,
+department_id int ,
+constraint emp_pk primary key(employee_id));
+
+desc employees;
+insert into employees
+(employee_id,first_name,
+email,phone_number,hire_date,
+job_id,salary,department_id)
+ values(101,'Steven','Sking@gmail.com',
+ '515.123.4567',
+'1987-06-17','AD_PRES',24000,90);
+
+create table department(deptno int primary key,
+deptname varchar(30));
+insert into department 
+values
+(10,'IT'),(20,'Admin'),(30,'Sales');
+
+alter table employees 
+add constraint dep_emp_deptno_fk
+foreign key(department_id) 
+references department(deptno)
+on delete set null;
+insert into department 
+values
+(90,'Marketing');
+delete from department where deptno=90;
+
