@@ -60,7 +60,7 @@ Create table LMS_BOOK_ISSUE
 );
 
 Insert into LMS_MEMBERS
-Values('LM001', 'AMIT', 'CHENNAI', ('2012-02-20'), ('2013-11-02'),'Temporary');
+Values('LM001', 'AMIT', 'CHENNAI', ('20-FEB-2012'), ('2013-11-02'),'Temporary');
 
 Insert into LMS_MEMBERS
 Values('LM002', 'ABDHUL', 'DELHI', ('2012-04-10'),('2013-04-09'),'Temporary');
