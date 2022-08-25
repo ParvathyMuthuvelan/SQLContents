@@ -1,0 +1,25 @@
+create table employeeA
+(employee_id number(8),employee_name varchar2(30),job_id varchar2(30));
+create table employeeB
+(employee_id number(8),employee_name varchar2(30),job_id varchar2(30));
+
+insert into employeeB
+ values(1001,'Sai','Sr Manager');
+ 
+ select employee_id,empname,job_id from employeeA
+ union
+ select employee_id,employee_name,null from employeeB;
+ 
+  select employee_id,employee_name from employeeA
+ union all
+ select employee_id,employee_name from employeeB;
+ 
+  select employee_id,employee_name from employeeA
+ intersect
+ select employee_id,employee_name from employeeB;
+ 
+   select employee_id,employee_name from employeeA
+ minus
+ select employee_id,employee_name from employeeB;
+ 
+ alter table employeeA rename column employee_name to empname;
