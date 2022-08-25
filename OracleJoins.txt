@@ -13,3 +13,14 @@ select emp.employee_id,emp.first_name,dep.deptno,dep.deptname from department de
 
 --full outer join
 select emp.employee_id,emp.first_name,dep.deptno,dep.deptname from department dep full outer join employees emp on dep.deptno=emp.department_id
+
+-- self join
+-- Display employee names and their managers
+
+select emp.first_name,mgr.first_name
+from employees emp join employees mgr on
+emp.manager_id=mgr.employee_id;
+
+-- Non equii join
+
+SQL> select emp.first_name,emp.salary,grd.grade from employees emp join job_grade grd on emp.salary between grd.min_sal and max_sal;
