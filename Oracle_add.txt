@@ -1,0 +1,186 @@
+#1 Difference between OLTP vs OLAP
+
+Online Analytical Processing (OLAP): Online Analytical Processing consists of a type of software tools that are used for data analysis for business decisions. OLAP provides an environment to get insights from the database retrieved from multiple database systems at one time. 
+Examples – Any type of Data warehouse system is an OLAP system. The uses of OLAP are as follows:
+
+Spotify analyzed songs by users to come up with a personalized homepage of their songs and playlist.
+Netflix movie recommendation system.
+
+Online transaction processing (OLTP): Online transaction processing provides transaction-oriented applications in a 3-tier architecture. OLTP administers the day-to-day transactions of an organization. 
+
+Examples: Uses of OLTP are as follows:
+
+ATM center is an OLTP application.
+OLTP handles the ACID properties during data transactions via the application.
+
+Sr. No.	Category	OLAP (Online analytical processing)	OLTP (Online transaction processing)
+1.Definition	
+It is well-known as an online database query management system.	
+It is well-known as an online database modifying system.
+
+2.Data source
+Consists of historical data from various Databases. In other words, different OLTP databases are used as data sources for OLAP.
+Consists of only of operational current data. In other words, the original data source is OLTP and its transactions. 
+
+3.Method used
+It makes use of a data warehouse.	
+It makes use of a standard database management system (DBMS).
+
+4.Application	
+It is subject-oriented. Used for Data Mining, Analytics, Decisions making, etc.	
+It is application-oriented. Used for business tasks.
+
+5.Normalized	
+In an OLAP database, tables are not normalized.
+In an OLTP database, tables are normalized (3NF).
+
+6.Usage of data	
+The data is used in planning, problem-solving, and decision-making.	The data is used to perform day-to-day fundamental operations.
+
+
+
+
+#2 Materialized views.
+
+In data warehouses, you can use materialized views to precompute and store aggregated data such as the sum of sales. Materialized views in these environments are often referred to as summaries, because they store summarized data.
+views are generally used when data is to be accessed infrequently and data in table get updated on frequent basis. On other hand Materialized Views are used when data is to be accessed frequently and data in table not get updated on frequent basis.
+
+#3 Partition the tables for better management and optimization.
+Partition allows tables, indexes and index organized tables to be subdivided into smaller pieces.
+ Table partition is used to reduce the cost and improving performance of the application. 
+There are some partition mechanisms using which one can divide a table into smaller pieces. 
+Partitions can be used in so many application where we need to improve the performance. 
+Each partition has its own name and  it has own memory storage.
+
+When to partition the table?
+Table should be greater than 2 GB
+When table performance is weak and we need to improve performance of application.
+
+Range partition
+Create table employee(emp_no number(5),
+salary number(8))
+partition by range(salary)
+(partition p1 values less than(10000),
+partition p2 values less than(20000),
+partition p3 values less than(30000)
+);
+
+select * from employees partition(p1);
+
+List Partition
+Create table Employee1(emp_no number(6),
+city varchar2(20))
+partition by List(city)
+(partition p1_chennai values ('Chennai'),
+partition p2_mumbai values('Mumbai'),
+partition p3_hyderabad values('Hyderabad'),
+partition p4_other values (Default));
+
+SQL functions like ROLLUP and CUBE operators.
+
+ROLLUP and CUBE Clauses in Oracle:
+
+Special Clauses in Oracle.
+Used for finding subtotal and grand total based on columns.
+Working along with the “GROUP BY” clause.
+ROLLUP will find sub and grand total based on a single column.
+CUBE will find sub and grand totals based on multiple columns.
+
+CREATE TABLE Employee (
+  Id INT PRIMARY KEY,
+  Name VARCHAR(15),
+  Department VARCHAR(10),
+  Salary NUMBER(8, 2),
+  Gender VARCHAR(10),
+  Comm INT,
+  City VARCHAR(10)
+);
+INSERT INTO Employee (Id, Name, Department, Salary, Gender, Comm, City) VALUES (1001, 'John', 'IT', 35000, 'Male', 3500, 'London');
+INSERT INTO Employee (Id, Name, Department, Salary, Gender, Comm, City) VALUES (1002, 'Smith', 'HR', 45000, 'Male', 4500, 'Mumbai');
+INSERT INTO Employee (Id, Name, Department, Salary, Gender, Comm, City) VALUES (1003, 'James', 'Finance', 50000, 'Male', 5000, 'Delhi');
+INSERT INTO Employee (Id, Name, Department, Salary, Gender, Comm, City) VALUES (1004, 'Mike', 'Finance', 50000, 'Male', NULL, 'London');
+INSERT INTO Employee (Id, Name, Department, Salary, Gender, Comm, City) VALUES (1005, 'Linda', 'HR', 75000, 'Female', NULL, 'Mumbai');
+INSERT INTO Employee (Id, Name, Department, Salary, Gender, Comm, City) VALUES (1006, 'Anurag', 'IT', 35000, 'Male', NULL, 'London');
+INSERT INTO Employee (Id, Name, Department, Salary, Gender, Comm, City) VALUES (1007, 'Priyanla', 'HR', 45000, 'Female', NULL, 'Mumbai');
+INSERT INTO Employee (Id, Name, Department, Salary, Gender, Comm, City) VALUES (1008, 'Sambit', 'IT', 55000, 'Female', 5500, 'London');
+INSERT INTO Employee (Id, Name, Department, Salary, Gender, Comm, City) VALUES (1009, 'Pranaya', 'IT', 57000, 'Female', 5700, 'London');
+INSERT INTO Employee (Id, Name, Department, Salary, Gender, Comm, City) VALUES (1010, 'Hina', 'HR', 75000, 'Male', 7500, 'Mumbai');
+INSERT INTO Employee (Id, Name, Department, Salary, Gender, Comm, City) VALUES (1011, 'Warner', 'Finance', 55000, 'Female', NULL, 'London');
+
+SELECT Department, COUNT(*) FROM Employee GROUP BY ROLLUP(Department);
+
+SELECT Department, Gender, COUNT(*) FROM Employee GROUP BY CUBE(Department, Gender) ORDER BY Department;
+
+
+CREATE TABLE Temperature
+(
+  YEAR_NUM int, 
+  MONTH_NUM int, 
+  AVG_TEMP int
+);
+
+INSERT INTO Temperature
+(
+  YEAR_NUM, 
+  MONTH_NUM, AVG_TEMP
+)
+VALUES
+    (2017, 1, 16),
+    (2017, 2, 12),
+    (2017, 3, 19),
+    (2017, 4, 22),
+    (2017, 5, 27),
+    (2017, 6, 30);
+
+
+YEAR_NUM   MONTH_NUM   AVG_TEMP       
+    2017           1         16    
+    2017           2         12
+    2017           3         19
+    2017           4         22
+    2017           5         27
+    2017           6         30
+
+
+YEAR_NUM     1     2     3     4     5     6       
+    2017    16    12    19    22    27    30
+
+
+SELECT * 
+FROM Temperature
+PIVOT
+    (
+    sum(avg_temp)
+    FOR month_num IN (1,2,3,4,5,6)
+    );
+
+
+CREATE TABLE Temperatures
+(
+  YEAR_NUM int, 
+  Jan int, 
+  Feb int,
+  Mar int,
+  Apr int,
+  May int,
+  Jun int
+);
+ 
+INSERT INTO Temperatures
+(
+  YEAR_NUM, 
+  Jan, Feb, Mar,Apr, May, Jun
+)
+VALUES
+    (2017, 16, 12, 19, 22, 27, 30);
+
+SELECT * 
+FROM
+    (
+    SELECT *
+    FROM Temperatures
+    UNPIVOT(
+        avg_temp
+        FOR MONTH_NUM
+        IN (Jan, Feb, Mar, Apr, May, Jun))
+    );
