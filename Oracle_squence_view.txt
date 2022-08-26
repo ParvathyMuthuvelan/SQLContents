@@ -1,0 +1,75 @@
+CREATE SEQUENCE dept_deptid_seq
+                    INCREMENT BY 10
+                   START WITH 120
+                    MAXVALUE 9999
+                  NOCACHE
+                  NOCYCLE;
+
+select dept_deptid_seq.nextval from dual;
+select dept_deptid_seq.currval from dual;
+insert into department values(dept_deptid_seq.nextval,'Sales');
+
+ALTER SEQUENCE dept_seq
+               INCREMENT BY 20
+               MAXVALUE 999999
+               NOCACHE
+               NOCYCLE;
+
+create view emp_view as select employee_id,first_name,salary,department_id from employees where department_id=10;
+
+ select * from emp_view;
+ update emp_view set salary=salary+5000 where employee_id=103;
+
+select * from emp_view;
+select employee_id,salary from employees;
+
+CREATE OR REPLACE VIEW dept_sum_vu
+  (name, minsal, maxsal, avgsal)
+AS SELECT   d.department_name, MIN(e.salary), 
+            MAX(e.salary),AVG(e.salary)
+   FROM     employees e JOIN departments d
+   ON       (e.department_id = d.department_id)
+   GROUP BY d.department_name;
+
+
+CREATE OR REPLACE VIEW empvu20
+AS SELECT	*
+   FROM     employees
+   WHERE    department_id = 20
+   WITH CHECK OPTION CONSTRAINT empvu20_ck ;
+
+insert into empvu20(employee_id,first_name,last_name,email,phone_number,hire_date,
+job_id,salary,manager_id,department_id) values(101,'Neena','Kochhar','NKOCHHAR','515.123.4568',
+'1989-09-21','AD_VP',17000,100,20);
+
+CREATE OR REPLACE VIEW empvu10
+    (employee_number, employee_name, job_title)
+AS SELECT	employee_id, last_name, job_id
+   FROM     employees
+   WHERE    department_id = 10
+   WITH READ ONLY ;
+
+Inline view
+
+ List all the employees who has salary greater than the average salary of their own department.
+select emp.first_name,emp.salary,emp.department_id 
+from employees emp,
+(select department_id,avg(salary) "avgsal"  from employees group by department_id) temp where 
+emp.department_id=temp.department_id and emp.salary>temp.avgsal;
+
+
+Index
+CREATE INDEX 	emp_last_name_idx
+ON 		employees(last_name);
+
+
+
+
+
+
+
+
+
+
+
+
